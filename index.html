@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#dff4fc" />
+    <meta name="description" content="Folded Dream Letters — CHANYEOL 生日纪念网页" />
+    <title>Folded Dream Letters · CHANYEOL</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="paper-grain" aria-hidden="true"></div>
+
+    <header class="site-header" aria-label="主导航">
+      <a class="brand" href="#home" aria-label="回到首页">FDL<span>♡</span></a>
+      <nav>
+        <a href="#letter">LOEY 的来信</a>
+        <a href="#album">纪念册</a>
+        <a href="#reply">回信</a>
+      </nav>
+      <span class="date-mark">11 / 27</span>
+    </header>
+
+    <main>
+      <section class="hero" id="home" aria-label="Folded Dream Letters 主视觉">
+        <img src="./assets/网页主页面.png" alt="Folded Dream Letters 朴灿烈生日主视觉" />
+        <div class="hero-vignette"></div>
+        <button class="enter-letter" type="button" data-scroll="#letter">
+          <span>OPEN THE LETTER</span>
+          <i aria-hidden="true">↓</i>
+        </button>
+        <p class="hero-caption">A little blue dream, folded for you.</p>
+      </section>
+
+      <section class="section letter-section" id="letter">
+        <div class="section-heading reveal">
+          <p class="eyebrow">01 · LETTER FROM LOEY</p>
+          <h2>LOEY 的来信</h2>
+          <p>轻轻拆开，听见十一月的问候。</p>
+        </div>
+
+        <div class="letter-stage reveal" data-letter-stage>
+          <div class="letter-shot letter-cover" aria-hidden="false">
+            <img src="./assets/LOEY的来信1.png" alt="浅蓝色书桌上的信封" />
+            <button class="open-envelope" type="button">
+              <span class="heart">♡</span>
+              <span>拆开信封</span>
+            </button>
+          </div>
+          <div class="letter-shot letter-open" aria-hidden="true">
+            <img src="./assets/LOEY的来信2.png" alt="LOEY 写给大家的信" />
+            <button class="close-envelope" type="button">合上信封 ×</button>
+          </div>
+        </div>
+
+        <p class="letter-hint reveal"><span>TIP</span> 点击信封上的爱心，打开来信</p>
+      </section>
+
+      <section class="section album-section" id="album">
+        <div class="album-bg" aria-hidden="true"></div>
+        <div class="section-heading section-heading--light reveal">
+          <p class="eyebrow">02 · OUR BLUE ARCHIVE</p>
+          <h2>纪念册</h2>
+          <p>把每一个闪光的瞬间，收进蓝色文件夹。</p>
+        </div>
+
+        <div class="folder reveal">
+          <div class="folder-tab">
+            <span>CHANYEOL</span>
+            <small>2012 — FOREVER</small>
+          </div>
+          <div class="photo-grid" id="photoGrid" aria-label="朴灿烈照片纪念册"></div>
+          <div class="folder-stamp" aria-hidden="true">MEMORY<br />FILE</div>
+        </div>
+      </section>
+
+      <section class="section reply-section" id="reply">
+        <div class="section-heading reveal">
+          <p class="eyebrow">03 · WRITE BACK</p>
+          <h2>回信</h2>
+          <p>留一句想对灿烈说的话，让它停在这封信里。</p>
+        </div>
+
+        <div class="reply-desk reveal">
+          <img src="./assets/回信.png" alt="蓝色桌面上的留言信纸" />
+          <form class="reply-form" id="replyForm">
+            <label for="message">TO. CHANYEOL</label>
+            <textarea id="message" maxlength="140" placeholder="写下你的心意……" required></textarea>
+            <div class="form-row">
+              <span><b id="charCount">0</b> / 140</span>
+              <button type="submit">折好这封信 <i>→</i></button>
+            </div>
+          </form>
+        </div>
+
+        <div class="message-wall reveal">
+          <div class="wall-title">
+            <span>LETTERS FOR YOU</span>
+            <h3>信笺墙</h3>
+          </div>
+          <div class="notes" id="notes" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>FOLDED DREAM LETTERS</p>
+      <span>FOR CHANYEOL · 11.27 · LOVE FOR LOEY</span>
+      <a href="#home">BACK TO TOP ↑</a>
+    </footer>
+
+    <button class="music-player" id="musicToggle" type="button" aria-label="播放背景音乐" aria-pressed="false">
+      <span class="disc" aria-hidden="true"><i></i></span>
+      <span class="music-copy"><b>BGM</b><small>听到的信</small></span>
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+    <audio id="bgm" src="./assets/听到的信.mp3" loop preload="metadata"></audio>
+
+    <dialog class="lightbox" id="lightbox">
+      <button type="button" class="lightbox-close" aria-label="关闭大图">×</button>
+      <button type="button" class="lightbox-nav prev" aria-label="上一张">‹</button>
+      <figure>
+        <img src="" alt="纪念册大图" />
+        <figcaption><span id="photoIndex">01</span> / <span id="photoTotal">22</span></figcaption>
+      </figure>
+      <button type="button" class="lightbox-nav next" aria-label="下一张">›</button>
+    </dialog>
+
+    <div class="toast" id="toast" role="status">信已经折好啦 ♡</div>
+    <script src="./script.js?v=2"></script>
+  </body>
+</html>
