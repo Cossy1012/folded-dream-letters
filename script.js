@@ -61,16 +61,31 @@ document.addEventListener("keydown", (event) => {
 });
 
 const stage = document.querySelector("[data-letter-stage]");
-stage.querySelector(".open-envelope").addEventListener("click", () => {
+const letterCover = stage.querySelector(".letter-cover");
+const closeEnvelope = stage.querySelector(".close-envelope");
+
+function openLetter() {
   stage.classList.add("is-open");
-  stage.querySelector(".letter-cover").setAttribute("aria-hidden", "true");
+  letterCover.setAttribute("aria-hidden", "true");
+  letterCover.setAttribute("tabindex", "-1");
   stage.querySelector(".letter-open").setAttribute("aria-hidden", "false");
   startMusicOnce();
+  closeEnvelope.focus();
+}
+
+letterCover.addEventListener("click", openLetter);
+letterCover.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openLetter();
+  }
 });
-stage.querySelector(".close-envelope").addEventListener("click", () => {
+closeEnvelope.addEventListener("click", () => {
   stage.classList.remove("is-open");
-  stage.querySelector(".letter-cover").setAttribute("aria-hidden", "false");
+  letterCover.setAttribute("aria-hidden", "false");
+  letterCover.setAttribute("tabindex", "0");
   stage.querySelector(".letter-open").setAttribute("aria-hidden", "true");
+  letterCover.focus();
 });
 
 document.querySelectorAll("[data-scroll]").forEach((button) => {

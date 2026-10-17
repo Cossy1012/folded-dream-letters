@@ -163,28 +163,11 @@ nav a:hover::after, nav a.active::after { left: 0; right: 0; }
 .letter-stage::after { right: -28px; bottom: 15px; transform: rotate(-28deg); }
 .letter-shot { position: absolute; inset: 0; transition: opacity .7s ease, transform 1s cubic-bezier(.2,.8,.2,1); }
 .letter-shot img { width: 100%; height: 100%; object-fit: cover; }
+.letter-cover { cursor: pointer; }
+.letter-cover:focus-visible { outline: 4px solid var(--blue-deep); outline-offset: -8px; }
 .letter-open { opacity: 0; transform: translateY(16px) scale(1.025); pointer-events: none; }
 .letter-stage.is-open .letter-cover { opacity: 0; transform: translateY(-18px) scale(.98); pointer-events: none; }
 .letter-stage.is-open .letter-open { opacity: 1; transform: none; pointer-events: auto; }
-.open-envelope {
-  position: absolute;
-  left: 49.5%; top: 52%;
-  transform: translate(-50%, -50%);
-  display: grid;
-  place-items: center;
-  gap: 5px;
-  width: 110px; height: 110px;
-  color: #8b5360;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(255,255,255,.9);
-  box-shadow: 0 14px 35px rgba(66, 110, 130, .24);
-  cursor: pointer;
-  animation: pulse 2.2s ease-in-out infinite;
-}
-.open-envelope .heart { color: #ee8fa1; font-size: 33px; line-height: .8; }
-.open-envelope span:last-child { font-size: 12px; font-weight: 700; letter-spacing: .08em; }
-@keyframes pulse { 50% { transform: translate(-50%, -50%) scale(1.06); } }
 .close-envelope { position: absolute; right: 18px; top: 18px; border: 0; padding: 9px 13px; border-radius: 50px; background: rgba(255,255,255,.8); color: var(--blue-ink); cursor: pointer; font-size: 12px; }
 .letter-hint { margin: 30px auto 0; color: #687b84; text-align: center; font-size: 12px; }
 .letter-hint span { margin-right: 8px; padding: 4px 8px; color: white; background: var(--blue); font-size: 9px; font-weight: 800; letter-spacing: .14em; transform: rotate(-4deg); display: inline-block; }
@@ -298,9 +281,6 @@ footer a { justify-self: end; color: white; font: 700 10px/1 Arial; letter-spaci
   .letter-shot img { object-fit: cover; }
   .letter-cover img { object-position: center; }
   .letter-open img { object-position: center; }
-  .open-envelope { width: 74px; height: 74px; }
-  .open-envelope .heart { font-size: 24px; }
-  .open-envelope span:last-child { font-size: 9px; }
   .folder { padding: 38px 14px 34px; }
   .folder-tab { width: 220px; }
   .photo-grid { columns: 2 120px; column-gap: 12px; }
