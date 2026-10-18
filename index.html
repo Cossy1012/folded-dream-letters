@@ -7,16 +7,19 @@
     <meta name="description" content="Folded Dream Letters — CHANYEOL 生日纪念网页" />
     <title>Folded Dream Letters · CHANYEOL</title>
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./pcy.css" />
   </head>
   <body>
     <div class="paper-grain" aria-hidden="true"></div>
 
     <header class="site-header" aria-label="主导航">
-      <a class="brand" href="#home" aria-label="回到首页">FDL<span>♡</span></a>
+      <a class="brand" href="#home" aria-label="PCY，回到首页">PCY<span>♡</span></a>
       <nav>
         <a href="#letter">LOEY 的来信</a>
         <a href="#album">纪念册</a>
         <a href="#reply">回信</a>
+        <a href="#guestbook">留言板</a>
+        <a href="#camera">拍照亭</a>
       </nav>
       <span class="date-mark">11 / 27</span>
     </header>
@@ -95,6 +98,57 @@
             <h3>信笺墙</h3>
           </div>
           <div class="notes" id="notes" aria-live="polite"></div>
+          <p class="private-note">这里珍藏的是你在此设备写下的回信。想和大家分享，请到下面的留言板。</p>
+        </div>
+      </section>
+
+      <section class="section guestbook-section" id="guestbook">
+        <div class="section-heading reveal">
+          <p class="eyebrow">04 · WORDS UNDER THE RAIN</p>
+          <h2>雨中的留言板</h2>
+          <p>在这里相遇，把想说的话留在同一片蓝色里。</p>
+        </div>
+        <div class="guestbook-paper reveal">
+          <div class="guestbook-topline"><span>DEAR. CHANYEOL</span><span class="mode-badge" id="guestbookMode">本机预览</span></div>
+          <form id="guestbookForm" class="guestbook-form">
+            <label for="guestName">你的名字 <small>选填</small></label>
+            <input id="guestName" name="name" maxlength="20" placeholder="怎么称呼你？" autocomplete="nickname" />
+            <label for="guestMessage">想留下的话</label>
+            <textarea id="guestMessage" name="body" maxlength="300" rows="4" placeholder="一句生日祝福，或一个想分享的瞬间……" required></textarea>
+            <div class="guestbook-submit-row"><span><b id="guestCount">0</b> / 300</span><button class="pcy-button" id="guestSubmit" type="submit">寄出留言 <span aria-hidden="true">↗</span></button></div>
+          </form>
+          <p class="guestbook-notice" id="guestbookNotice">本机预览中的留言仅在此设备保存。</p>
+          <p class="inline-status" id="guestbookStatus" role="status" aria-live="polite"></p>
+          <div class="guestbook-list-heading"><h3>相遇的字句</h3><button class="text-button" type="button" id="refreshMessages">刷新留言 ↻</button></div>
+          <div class="guestbook-list" id="guestbookList" aria-label="访客留言" aria-busy="false"></div>
+          <button class="pcy-button pcy-button--quiet load-more" id="moreMessages" type="button" hidden>查看更多留言</button>
+        </div>
+      </section>
+
+      <section class="section camera-section" id="camera">
+        <div class="section-heading reveal">
+          <p class="eyebrow">05 · A MOMENT FOR OUR BLUE ARCHIVE</p>
+          <h2>蓝色拍照亭</h2>
+          <p>借一点此刻的光，把今天也折进纪念册。</p>
+        </div>
+        <div class="camera-desk reveal">
+          <div class="camera-live-panel">
+            <div class="camera-topline"><span>PCY PHOTO BOOTH</span><span id="cameraIndicator" class="camera-indicator">相机未开启</span></div>
+            <div class="camera-view">
+              <video id="cameraVideo" autoplay playsinline muted hidden aria-label="相机实时画面"></video>
+              <div class="camera-placeholder" id="cameraPlaceholder"><svg width="64" height="52" viewBox="0 0 64 52" fill="none" aria-hidden="true"><path d="M5 13h14l5-8h16l5 8h14v34H5V13Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="32" cy="29" r="11" stroke="currentColor" stroke-width="2"/><circle cx="51" cy="20" r="2" fill="currentColor"/></svg><p>让这一刻，成为一张蓝色纪念。</p><small>点击下方按钮开启相机</small></div>
+              <span class="camera-corner corner-tl" aria-hidden="true"></span><span class="camera-corner corner-br" aria-hidden="true"></span>
+            </div>
+            <div class="camera-device-row" id="cameraDeviceRow" hidden><label for="cameraDevice">选择相机</label><select id="cameraDevice"></select></div>
+            <div class="camera-actions"><button class="pcy-button" id="enableCamera" type="button">开启相机</button><button class="pcy-button" id="takePhoto" type="button" disabled>拍一张 ♡</button><button class="text-button" id="stopCamera" type="button" disabled>关闭相机</button></div>
+            <p class="inline-status" id="cameraStatus" role="status" aria-live="polite">开启时需允许浏览器使用相机。</p>
+            <p class="camera-privacy">照片只在你的设备上生成，点击下载后保存到电脑。</p>
+          </div>
+          <div class="camera-result-panel">
+            <div class="photo-result" id="photoResult"><div class="photo-empty" id="photoEmpty"><span aria-hidden="true">♡</span><p>给今天留一张纪念</p><small>YOUR LITTLE BLUE MOMENT</small></div><img id="capturedPhoto" alt="带有 PCY 蓝色相框的拍照纪念卡" hidden /></div>
+            <p class="photo-caption">A little moment, folded for you.</p>
+            <div class="photo-result-actions"><a class="pcy-button" id="downloadPhoto" download="PCY-blue-moment.png" hidden>下载纪念照 ↓</a><button class="text-button" id="retakePhoto" type="button" hidden>再拍一张</button></div>
+          </div>
         </div>
       </section>
     </main>
@@ -112,6 +166,9 @@
     </button>
     <audio id="bgm" src="./assets/听到的信.mp3" loop preload="metadata"></audio>
 
+    <canvas id="rainCanvas" class="rain-canvas" aria-hidden="true"></canvas>
+    <button class="rain-toggle" id="rainToggle" type="button" aria-label="开启细雨特效" aria-pressed="false"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3C7 3 3 7 3 12h18c0-5-4-9-9-9ZM12 3v15c0 4 5 4 5 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="m4 17-1 2m5-2-1 2m13-2-1 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span id="rainLabel">细雨 · 关</span></button>
+
     <dialog class="lightbox" id="lightbox">
       <button type="button" class="lightbox-close" aria-label="关闭大图">×</button>
       <button type="button" class="lightbox-nav prev" aria-label="上一张">‹</button>
@@ -124,5 +181,7 @@
 
     <div class="toast" id="toast" role="status">信已经折好啦 ♡</div>
     <script src="./script.js?v=2"></script>
+    <script src="./site-config.js"></script>
+    <script src="./pcy.js"></script>
   </body>
 </html>
