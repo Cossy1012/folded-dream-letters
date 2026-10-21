@@ -4,7 +4,22 @@
   const photo = document.querySelector("#mistPhoto"), canvas = document.querySelector("#mistCanvas");
   const reset = document.querySelector("#resetMist"), clear = document.querySelector("#clearMist");
   const status = document.querySelector("#mistStatus"), ctx = canvas?.getContext("2d");
+  const opacity = document.querySelector("#mistOpacity"), opacityValue = document.querySelector("#mistOpacityValue");
   if (!frame || !photo || !ctx) return;
+
+  function updateOpacity(save = false) {
+    const value = Math.max(0, Math.min(100, Number(opacity.value)));
+    canvas.style.opacity = String(value / 100);
+    opacityValue.value = `${value}%`;
+    opacity.setAttribute("aria-valuetext", `${value}%`);
+    if (save) try { localStorage.setItem("pcy-mist-opacity", String(value)); } catch { /* Storage is optional. */ }
+  }
+  try {
+    const saved = localStorage.getItem("pcy-mist-opacity");
+    if (saved !== null && Number.isFinite(Number(saved))) opacity.value = String(Math.max(0, Math.min(100, Number(saved))));
+  } catch { /* Use the default when storage is unavailable. */ }
+  updateOpacity();
+  opacity.addEventListener("input", () => updateOpacity(true));
 
   let width = 0, height = 0, loaded = false, clearAll = false, activePointer = null, last = null, resizeFrame = 0;
   const marks = [];
@@ -144,12 +159,14 @@
     if (!photo.naturalWidth) return;
     loaded = true; resize(); frame.classList.add("is-ready");
     reset.disabled = clear.disabled = false;
+    opacity.disabled = false;
     status.textContent = "水雾已起，轻轻擦开，就能看见他。";
   }
   photo.addEventListener("load", ready);
   photo.addEventListener("error", () => {
     loaded = false; canvas.hidden = true; frame.classList.add("is-touched");
     reset.disabled = clear.disabled = true;
+    opacity.disabled = true;
     status.textContent = "照片暂时加载失败，请刷新网页后重试。";
   });
   if (photo.complete && photo.naturalWidth) ready();

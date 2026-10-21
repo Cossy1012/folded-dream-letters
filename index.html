@@ -7,7 +7,7 @@
     <meta name="description" content="Folded Dream Letters — CHANYEOL 生日纪念网页" />
     <title>Folded Dream Letters · CHANYEOL</title>
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./pcy.css?v=20261021-wetglass" />
+    <link rel="stylesheet" href="./pcy.css?v=20261021-paper-opacity" />
   </head>
   <body>
     <div class="paper-grain" aria-hidden="true"></div>
@@ -141,6 +141,7 @@
           </div>
           <div class="mist-bottomline">
             <p id="mistInstructions">鼠标划过或用手指涂抹，擦掉水雾，露出藏在后面的照片。</p>
+            <div class="mist-opacity-control"><label for="mistOpacity">水雾不透明度</label><input id="mistOpacity" type="range" min="0" max="100" step="1" value="75" disabled /><output id="mistOpacityValue" for="mistOpacity">75%</output></div>
             <div class="mist-actions"><button class="pcy-button pcy-button--quiet" id="resetMist" type="button" disabled>重新起雾 ↻</button><button class="text-button" id="clearMist" type="button" disabled>一键看清</button></div>
           </div>
           <p id="mistStatus" class="mist-status" role="status" aria-live="polite">水雾正在慢慢聚拢…</p>
@@ -175,7 +176,7 @@
             <p class="camera-privacy">照片只在你的设备上生成，点击下载后保存到电脑。</p>
           </div>
           <div class="camera-result-panel">
-            <div class="photo-result" id="photoResult"><div class="photo-empty" id="photoEmpty"><canvas id="framePreview" width="1104" height="828" role="img" aria-label="蓝色信笺相框预览"></canvas></div><img id="capturedPhoto" alt="带有 LOEY 相框的拍照纪念卡" hidden /></div>
+            <div class="photo-result" id="photoResult"><div class="photo-empty" id="photoEmpty"><canvas id="framePreview" width="1200" height="1050" role="img" aria-label="蓝色信笺相框预览"></canvas></div><img id="capturedPhoto" alt="带有 LOEY 相框的拍照纪念卡" hidden /></div>
             <p class="photo-caption" id="frameCaption">相框预览 · 蓝色信笺</p>
             <p class="frame-tip" id="frameTip">拍完也能换相框，喜欢哪一款就下载哪一款。</p>
             <div class="photo-result-actions"><a class="pcy-button" id="downloadPhoto" download="PCY-blue-moment.png" hidden>下载纪念照 ↓</a><button class="text-button" id="retakePhoto" type="button" hidden>再拍一张</button></div>
@@ -214,7 +215,7 @@
     <script src="./script.js?v=20261021-album"></script>
     <script src="./site-config.js"></script>
     <script src="./pcy.js?v=20261021"></script>
-    <script src="./mist.js?v=20261021-wetglass"></script>
-    <script src="./camera.js?v=20261021-fitphoto"></script>
+    <script src="./mist.js?v=20261021-opacity"></script>
+    <script src="./camera.js?v=20261021-paper-crop"></script>
   </body>
 </html>

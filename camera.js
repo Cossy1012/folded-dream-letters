@@ -14,36 +14,105 @@
     cameraStatus.classList.toggle("is-error", error);
   };
   const frames = {
-    blue: { name: "蓝色信笺", paper: "#f6fcff", accent: "#6a9db5", caption: "A little blue moment, folded for you." },
-    polaroid: { name: "奶油拍立得", paper: "#fff9ed", accent: "#ad8c72", caption: "Dear. LOEY, keep this little moment." },
-    film: { name: "复古胶片", paper: "#1c2633", accent: "#d4b989", caption: "LOEY  /  OUR BLUE ARCHIVE" },
-    stars: { name: "星光纪念", paper: "#18365b", accent: "#a9d6f3", caption: "You are my little blue star." },
-    loey: { name: "LOEY 透明人物合拍", paper: "#f6fcff", accent: "#6a9db5", caption: "LOEY + YOU · Stay with me, my love.", portrait: "loey-person-cutout.png" },
-    "loey-peace": { name: "LOEY 比耶合拍", paper: "#f6fcff", accent: "#6a9db5", caption: "LOEY + YOU · A little peace, a little love.", portrait: "loey-peace-cutout.png" },
-    "loey-heart": { name: "LOEY 爱心合拍", paper: "#f6fcff", accent: "#6a9db5", caption: "LOEY + YOU · All my little hearts for you.", portrait: "loey-heart-cutout.png" },
-    "loey-smile": { name: "LOEY 笑脸合拍", paper: "#f6fcff", accent: "#6a9db5", caption: "LOEY + YOU · Keep this little smile.", portrait: "loey-smile-cutout.png" },
-    "loey-rose": { name: "LOEY 玫瑰合拍", paper: "#fff8f8", accent: "#bd8fa2", caption: "LOEY + YOU · A rose, folded with love.", portrait: "loey-rose-cutout.png" },
-    "loey-school-v": { name: "LOEY 校服比耶", paper: "#b9001b", accent: "#efb9c2", caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-v-cutout.png" },
-    "loey-school-side": { name: "LOEY 校服侧身", paper: "#b9001b", accent: "#efb9c2", caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-side-cutout.png" },
-    "loey-school-smile": { name: "LOEY 校服笑眼", paper: "#b9001b", accent: "#efb9c2", caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-smile-cutout.png" },
-    "loey-school-heart": { name: "LOEY 校服脸颊心", paper: "#b9001b", accent: "#efb9c2", caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-heart-cutout.png" }
+    blue: { name: "蓝色信笺", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "A little blue moment, folded for you." },
+    polaroid: { name: "奶油拍立得", paper: "#fff9ed", ink: "#77604d", accent: "#ad8c72", box: [60, 52, 1080, 810], caption: "Dear. LOEY, keep this little moment." },
+    film: { name: "复古胶片", paper: "#1c2633", ink: "#f9efd5", accent: "#d4b989", box: [84, 76, 1032, 774], caption: "LOEY  /  OUR BLUE ARCHIVE" },
+    stars: { name: "星光纪念", paper: "#18365b", ink: "#f8edce", accent: "#a9d6f3", box: [64, 74, 1072, 804], caption: "You are my little blue star." },
+    loey: { name: "LOEY 透明人物合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · Stay with me, my love.", portrait: "loey-person-cutout.png" },
+    "loey-peace": { name: "LOEY 比耶合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little peace, a little love.", portrait: "loey-peace-cutout.png" },
+    "loey-heart": { name: "LOEY 爱心合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · All my little hearts for you.", portrait: "loey-heart-cutout.png" },
+    "loey-smile": { name: "LOEY 笑脸合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · Keep this little smile.", portrait: "loey-smile-cutout.png" },
+    "loey-rose": { name: "LOEY 玫瑰合拍", paper: "#fff8f8", ink: "#8b4b65", accent: "#bd8fa2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A rose, folded with love.", portrait: "loey-rose-cutout.png" },
+    "loey-school-v": { name: "LOEY 校服比耶", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-v-cutout.png" },
+    "loey-school-side": { name: "LOEY 校服侧身", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-side-cutout.png" },
+    "loey-school-smile": { name: "LOEY 校服笑眼", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-smile-cutout.png" },
+    "loey-school-heart": { name: "LOEY 校服脸颊心", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-heart-cutout.png" }
   };
   let stream = null, starting = false, rendering = false, refreshing = false;
   let cameraVersion = 0, photoVersion = 0, listVersion = 0, countdownTimer = 0, countdownDeadline = 0;
   let rawPhoto = null, photoDate = null, photoUrl = "";
+  let videoCrop = null, cropTimer = 0, cropCandidate = "", cropMatches = 0;
+  const edgeProbe = document.createElement("canvas");
+  const edgeContext = edgeProbe.getContext("2d", { willReadFrequently: true });
 
   function ready() {
     return Boolean(stream?.getVideoTracks().some((track) => track.readyState === "live") && video.videoWidth && video.videoHeight);
   }
   function cameraSize() {
-    const scale = Math.min(1, 1920 / Math.max(video.videoWidth || 1104, video.videoHeight || 828));
-    return { width: Math.round((video.videoWidth || 1104) * scale), height: Math.round((video.videoHeight || 828) * scale) };
+    const rect = activeVideoRect();
+    const scale = Math.min(1, 1920 / Math.max(rect.width, rect.height));
+    return { width: Math.round(rect.width * scale), height: Math.round(rect.height * scale) };
+  }
+  function activeVideoRect() {
+    if (videoCrop?.sourceWidth === video.videoWidth && videoCrop?.sourceHeight === video.videoHeight) return videoCrop;
+    return { x: 0, y: 0, width: video.videoWidth || 1104, height: video.videoHeight || 828 };
   }
   function syncLiveGeometry() {
     if (!video.videoWidth || !video.videoHeight) return;
     const size = cameraSize();
+    const rect = activeVideoRect();
     video.parentElement.style.aspectRatio = `${size.width} / ${size.height}`;
+    const left = video.classList.contains("is-mirrored") ? video.videoWidth - rect.x - rect.width : rect.x;
+    video.style.width = `${video.videoWidth / rect.width * 100}%`;
+    video.style.height = `${video.videoHeight / rect.height * 100}%`;
+    video.style.left = `${-left / rect.width * 100}%`;
+    video.style.top = `${-rect.y / rect.height * 100}%`;
     personOverlay.width = size.width; personOverlay.height = size.height;
+  }
+  function scanCameraEdges(force = false) {
+    if (!ready() || !edgeContext) return;
+    const vw = video.videoWidth, vh = video.videoHeight, scale = Math.min(1, 320 / Math.max(vw, vh));
+    const width = Math.round(vw * scale), height = Math.round(vh * scale);
+    edgeProbe.width = width; edgeProbe.height = height;
+    try {
+      edgeContext.drawImage(video, 0, 0, width, height);
+      const data = edgeContext.getImageData(0, 0, width, height).data;
+      let low = 255, high = 0;
+      for (let y = Math.floor(height * .2); y < height * .8; y += 3) for (let x = Math.floor(width * .2); x < width * .8; x += 3) {
+        const i = (y * width + x) * 4, light = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        low = Math.min(low, light); high = Math.max(high, light);
+      }
+      // Uniform dark/white scenes are content, not evidence of a camera border.
+      if (high - low < 28) return;
+      const lineKind = (vertical, index, start, end) => {
+        let black = 0, white = 0;
+        for (let p = start; p < end; p++) {
+          const i = (vertical ? p * width + index : index * width + p) * 4;
+          if (Math.max(data[i], data[i + 1], data[i + 2]) <= 10) black++;
+          if (Math.min(data[i], data[i + 1], data[i + 2]) >= 248) white++;
+        }
+        return black / (end - start) >= .995 ? 1 : white / (end - start) >= .995 ? 2 : 0;
+      };
+      const edge = (vertical, reverse, start, end) => {
+        const length = vertical ? width : height;
+        const kind = lineKind(vertical, reverse ? length - 1 : 0, start, end);
+        if (!kind) return 0;
+        let count = 0;
+        while (count < length * .28 && lineKind(vertical, reverse ? length - 1 - count : count, start, end) === kind) count++;
+        return count >= Math.max(2, length * .006) && count < length * .28 ? count : 0;
+      };
+      let top = edge(false, false, 0, width), bottom = edge(false, true, 0, width);
+      const topKind = lineKind(false, 0, 0, width), bottomKind = lineKind(false, height - 1, 0, width);
+      if (!top || !bottom || topKind !== bottomKind || (topKind === 2 && Math.min(top, bottom) / Math.max(top, bottom) < .7)) top = bottom = 0;
+      let left = edge(true, false, top, height - bottom), right = edge(true, true, top, height - bottom);
+      const leftKind = lineKind(true, 0, top, height - bottom), rightKind = lineKind(true, width - 1, top, height - bottom);
+      if (!left || !right || leftKind !== rightKind || (leftKind === 2 && Math.min(left, right) / Math.max(left, right) < .7)) left = right = 0;
+      if (width - left - right < width * .55 || height - top - bottom < height * .55) return;
+      const rect = { x: Math.ceil(left * vw / width), y: Math.ceil(top * vh / height),
+        width: Math.floor((width - right) * vw / width) - Math.ceil(left * vw / width),
+        height: Math.floor((height - bottom) * vh / height) - Math.ceil(top * vh / height), sourceWidth: vw, sourceHeight: vh };
+      const key = `${rect.x},${rect.y},${rect.width},${rect.height}`;
+      cropMatches = key === cropCandidate ? cropMatches + 1 : 1; cropCandidate = key;
+      if (!force && cropMatches < 2) return;
+      if (videoCrop && ["x", "y", "width", "height", "sourceWidth", "sourceHeight"].every(field => videoCrop[field] === rect[field])) return;
+      videoCrop = rect;
+      syncLiveGeometry(); updateOverlay();
+      if (!rawPhoto) renderPhoto();
+    } catch { /* Keep the complete frame if a browser cannot inspect camera pixels. */ }
+  }
+  function watchCameraEdges() {
+    clearInterval(cropTimer); scanCameraEdges(true);
+    cropTimer = setInterval(() => scanCameraEdges(), 450);
   }
   function currentPortrait(frameKey = frameSelect.value) {
     return portraits.get(frames[frameKey]?.portrait);
@@ -85,12 +154,14 @@
   }
   function releaseCamera() {
     cancelCountdown();
+    clearInterval(cropTimer); cropTimer = 0; videoCrop = null; cropCandidate = ""; cropMatches = 0;
     const previous = stream;
     stream = null;
     previous?.getTracks().forEach((track) => track.stop());
     video.srcObject = null;
     video.hidden = true;
     video.parentElement.style.removeProperty("aspect-ratio");
+    for (const property of ["width", "height", "left", "top"]) video.style.removeProperty(property);
     personOverlay.hidden = true;
     $("#cameraPlaceholder").hidden = false;
     indicator.textContent = "相机未开启";
@@ -178,6 +249,7 @@
       indicator.textContent = "相机已开启";
       indicator.classList.add("is-live");
       syncLiveGeometry();
+      watchCameraEdges();
       updateControls();
       updateOverlay();
       status("准备好了，选择定时和相框，再点击“拍一张” ♡");
@@ -206,7 +278,7 @@
     const item = currentPortrait(frameKey);
     if (item?.state !== "ready") return;
     const person = item.image;
-    const scale = Math.min(height / person.naturalHeight, width * .72 / person.naturalWidth);
+    const scale = Math.min(height * .98 / person.naturalHeight, width * .56 / person.naturalWidth);
     const w = person.naturalWidth * scale, h = person.naturalHeight * scale;
     ctx.drawImage(person, -width * .015, height - h, w, h);
   }
@@ -222,38 +294,51 @@
     const ctx = personOverlay.getContext("2d");
     if (ctx) { ctx.clearRect(0, 0, personOverlay.width, personOverlay.height); if (!personOverlay.hidden) paintPerson(ctx, personOverlay.width, personOverlay.height); }
   }
+  function frameLayout(image, key) {
+    const frame = frames[key] || frames.blue;
+    const [x, y, width, originalHeight] = frame.box;
+    const height = Math.round(width * image.height / image.width);
+    return { width: 1200, height: y + height + (1050 - y - originalHeight), box: [x, y, width, height] };
+  }
   function paintFrame(ctx, image, frameKey, date) {
     const frame = frames[frameKey] || frames.blue;
-    const width = ctx.canvas.width, height = ctx.canvas.height;
-    const unit = Math.min(width, height) / 828, inset = 12 * unit;
-    ctx.clearRect(0, 0, width, height);
-    if (image === demo) paintDemo(ctx, width, height, Boolean(frame.portrait));
-    else ctx.drawImage(image, 0, 0, width, height);
-    if (frame.portrait) paintPerson(ctx, width, height, frameKey);
-    // The frame sits inside the photo: no extra canvas, paper margins or footer.
-    ctx.strokeStyle = frameKey === "polaroid" ? frame.paper : frame.portrait ? frame.paper : frame.accent;
-    ctx.lineWidth = (frameKey === "polaroid" ? 12 : frame.portrait ? 7 : 2) * unit;
-    ctx.strokeRect(inset, inset, width - inset * 2, height - inset * 2);
+    const layout = frameLayout(image, frameKey);
+    const box = layout.box;
+    ctx.fillStyle = frame.paper;
+    ctx.fillRect(0, 0, layout.width, layout.height);
+    if (image === demo || image.demo) {
+      ctx.save(); ctx.translate(box[0], box[1]); paintDemo(ctx, box[2], box[3], Boolean(frame.portrait)); ctx.restore();
+    } else ctx.drawImage(image, ...box);
+    if (frame.portrait) {
+      const [x, y, w, h] = box;
+      ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+      ctx.translate(x, y); paintPerson(ctx, w, h, frameKey); ctx.restore();
+    }
+    ctx.strokeStyle = frame.accent;
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(...box);
     if (frameKey === "film") {
-      ctx.fillStyle = "#1c2633b3";
-      ctx.fillRect(0, 0, 28 * unit, height); ctx.fillRect(width - 28 * unit, 0, 28 * unit, height);
       ctx.fillStyle = "#e9ddbc";
-      for (let y = 22 * unit; y < height; y += 64 * unit) {
-        ctx.fillRect(8 * unit, y, 12 * unit, 25 * unit); ctx.fillRect(width - 20 * unit, y, 12 * unit, 25 * unit);
-      }
+      for (let y = 54; y < layout.height - 120; y += 86) { ctx.fillRect(20, y, 32, 40); ctx.fillRect(1148, y, 32, 40); }
+      ctx.font = "18px monospace";
+      ctx.textAlign = "left";
+      ctx.fillText("27  /  NOV", 88, 44);
     } else if (frameKey === "stars") {
       ctx.fillStyle = "#efdb9a";
-      [[.06, .07, 12], [.3, .035, 7], [.84, .06, 10], [.96, .35, 9], [.04, .73, 8], [.95, .83, 12]].forEach(([x, y, r]) => star(ctx, width * x, height * y, r * unit));
+      [[30, 50, 13], [300, 31, 9], [820, 36, 12], [1166, 260, 13], [27, 600, 10], [1171, 836, 10], [170, 992, 12], [1040, 997, 14]].forEach(([x, y, r]) => star(ctx, x, y / 1050 * layout.height, r));
+    } else if (frameKey === "polaroid") {
+      ctx.fillStyle = "#e1cbb49c";
+      for (const x of [60, 1140]) {
+        ctx.save(); ctx.translate(x, 54); ctx.rotate(x === 60 ? -.55 : .55); ctx.fillRect(-45, -12, 90, 24); ctx.restore();
+      }
     }
-    const shade = ctx.createLinearGradient(0, height - 100 * unit, 0, height);
-    shade.addColorStop(0, "rgba(9,30,42,0)"); shade.addColorStop(1, "rgba(9,30,42,.48)");
-    ctx.fillStyle = shade; ctx.fillRect(0, height - 100 * unit, width, 100 * unit);
     ctx.textAlign = "center";
-    ctx.fillStyle = "#fff";
-    ctx.font = `italic ${23 * unit}px Georgia, serif`;
-    ctx.fillText(frame.caption, width / 2, height - 43 * unit, width - 64 * unit);
-    ctx.font = `${13 * unit}px Arial, sans-serif`;
-    ctx.fillText(`LOEY  ·  FOLDED DREAM LETTERS  ·  ${date ? date.toLocaleDateString("zh-CN") : "11.27"}`, width / 2, height - 21 * unit, width - 64 * unit);
+    ctx.fillStyle = frame.ink;
+    ctx.font = frameKey === "film" ? "30px monospace" : "italic 36px Georgia, serif";
+    ctx.fillText(frame.caption, 600, layout.height - 110);
+    ctx.font = "20px Arial, sans-serif";
+    ctx.fillStyle = frame.accent;
+    ctx.fillText(`LOEY  ·  FOLDED DREAM LETTERS  ·  ${date ? date.toLocaleDateString("zh-CN") : "11.27"}`, 600, layout.height - 56);
   }
   const demo = document.createElement("canvas");
   demo.width = 1104; demo.height = 828;
@@ -279,15 +364,17 @@
     if (!rawPhoto || (frame.portrait && currentPortrait(frameKey)?.state !== "ready")) {
       rendering = false;
       const size = rawPhoto || (ready() ? cameraSize() : demo);
-      preview.width = size.width; preview.height = size.height;
-      const ctx = preview.getContext("2d"); if (ctx) paintFrame(ctx, demo, frameKey, null);
+      const layout = frameLayout(size, frameKey);
+      preview.width = layout.width; preview.height = layout.height;
+      const ctx = preview.getContext("2d"); if (ctx) paintFrame(ctx, { width: size.width, height: size.height, demo: true }, frameKey, null);
       $("#capturedPhoto").hidden = true; $("#photoEmpty").hidden = false;
       download.hidden = $("#retakePhoto").hidden = true;
       download.removeAttribute("href"); download.setAttribute("aria-disabled", "true");
       updateControls();
       return;
     }
-    const canvas = document.createElement("canvas"); canvas.width = rawPhoto.width; canvas.height = rawPhoto.height;
+    const layout = frameLayout(rawPhoto, frameKey);
+    const canvas = document.createElement("canvas"); canvas.width = layout.width; canvas.height = layout.height;
     const ctx = canvas.getContext("2d");
     if (!ctx) { status("浏览器暂时无法生成照片，请换个浏览器重试。", true); return; }
     rendering = true;
@@ -316,12 +403,14 @@
   function capturePhoto() {
     if (!ready() || starting || rendering) return;
     try {
+      scanCameraEdges(true);
       const size = cameraSize();
+      const rect = activeVideoRect();
       const image = document.createElement("canvas"); image.width = size.width; image.height = size.height;
       const ctx = image.getContext("2d");
       if (!ctx) throw new Error("Canvas unavailable");
       if (video.classList.contains("is-mirrored")) { ctx.translate(size.width, 0); ctx.scale(-1, 1); }
-      ctx.drawImage(video, 0, 0, size.width, size.height);
+      ctx.drawImage(video, rect.x, rect.y, rect.width, rect.height, 0, 0, size.width, size.height);
       rawPhoto = image;
       photoDate = new Date();
       renderPhoto("纪念照已经准备好，可以换相框或直接下载 ♡");
