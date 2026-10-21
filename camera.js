@@ -22,7 +22,11 @@
     "loey-peace": { name: "LOEY 比耶合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little peace, a little love.", portrait: "loey-peace-cutout.png" },
     "loey-heart": { name: "LOEY 爱心合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · All my little hearts for you.", portrait: "loey-heart-cutout.png" },
     "loey-smile": { name: "LOEY 笑脸合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · Keep this little smile.", portrait: "loey-smile-cutout.png" },
-    "loey-rose": { name: "LOEY 玫瑰合拍", paper: "#fff8f8", ink: "#8b4b65", accent: "#bd8fa2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A rose, folded with love.", portrait: "loey-rose-cutout.png" }
+    "loey-rose": { name: "LOEY 玫瑰合拍", paper: "#fff8f8", ink: "#8b4b65", accent: "#bd8fa2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A rose, folded with love.", portrait: "loey-rose-cutout.png" },
+    "loey-school-v": { name: "LOEY 校服比耶", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-v-cutout.png" },
+    "loey-school-side": { name: "LOEY 校服侧身", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-side-cutout.png" },
+    "loey-school-smile": { name: "LOEY 校服笑眼", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-smile-cutout.png" },
+    "loey-school-heart": { name: "LOEY 校服脸颊心", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-heart-cutout.png" }
   };
   let stream = null, starting = false, rendering = false, refreshing = false;
   let cameraVersion = 0, photoVersion = 0, listVersion = 0, countdownTimer = 0, countdownDeadline = 0;

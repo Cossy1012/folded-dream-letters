@@ -7,7 +7,7 @@
     <meta name="description" content="Folded Dream Letters — CHANYEOL 生日纪念网页" />
     <title>Folded Dream Letters · CHANYEOL</title>
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./pcy.css?v=20261021-person" />
+    <link rel="stylesheet" href="./pcy.css?v=20261021-mist" />
   </head>
   <body>
     <div class="paper-grain" aria-hidden="true"></div>
@@ -19,6 +19,7 @@
         <a href="#album">纪念册</a>
         <a href="#reply">回信</a>
         <a href="#guestbook">留言板</a>
+        <a href="#mist">擦开水雾</a>
         <a href="#camera">拍照亭</a>
       </nav>
       <span class="date-mark">11 / 27</span>
@@ -125,9 +126,30 @@
         </div>
       </section>
 
+      <section class="section mist-section" id="mist" aria-labelledby="mistTitle">
+        <div class="section-heading reveal">
+          <p class="eyebrow">05 · A LITTLE MOMENT BEHIND THE MIST</p>
+          <h2 id="mistTitle">擦开水雾</h2>
+          <p>隔着一层雾，也想慢慢靠近你。</p>
+        </div>
+        <div class="mist-card reveal">
+          <div class="mist-topline"><span>A RAINY DAY WITH LOEY</span><span aria-hidden="true">✧ 11.27</span></div>
+          <div class="mist-frame" id="mistFrame" aria-describedby="mistInstructions">
+            <img id="mistPhoto" src="./assets/loey-mist-background.jpg" alt="撑着透明雨伞、靠在蓝色栏杆旁的 LOEY" loading="lazy" decoding="async" />
+            <canvas id="mistCanvas" class="mist-layer" aria-hidden="true"></canvas>
+            <div class="mist-coax" aria-hidden="true"><span>♡</span><b>擦一擦，雾里藏着一个他</b><small>移动鼠标 · 手指轻擦</small></div>
+          </div>
+          <div class="mist-bottomline">
+            <p id="mistInstructions">鼠标划过或用手指涂抹，擦掉水雾，露出藏在后面的照片。</p>
+            <div class="mist-actions"><button class="pcy-button pcy-button--quiet" id="resetMist" type="button" disabled>重新起雾 ↻</button><button class="text-button" id="clearMist" type="button" disabled>一键看清</button></div>
+          </div>
+          <p id="mistStatus" class="mist-status" role="status" aria-live="polite">水雾正在慢慢聚拢…</p>
+        </div>
+      </section>
+
       <section class="section camera-section" id="camera">
         <div class="section-heading reveal">
-          <p class="eyebrow">05 · A MOMENT FOR OUR BLUE ARCHIVE</p>
+          <p class="eyebrow">06 · A MOMENT FOR OUR BLUE ARCHIVE</p>
           <h2>蓝色拍照亭</h2>
           <p>借一点此刻的光，把今天也折进纪念册。</p>
         </div>
@@ -145,7 +167,7 @@
             <p class="camera-device-hint" id="cameraDeviceHint">外接 USB 摄像头后，允许相机权限即可在这里选择。</p>
             <div class="camera-settings">
               <div><label for="cameraDelay">定时拍照</label><select id="cameraDelay"><option value="0">立即拍摄</option><option value="3">3 秒倒计时</option><option value="5">5 秒倒计时</option><option value="10">10 秒倒计时</option></select></div>
-              <div><label for="photoFrame">纪念相框</label><select id="photoFrame"><option value="blue">蓝色信笺</option><option value="polaroid">奶油拍立得</option><option value="film">复古胶片</option><option value="stars">星光纪念</option><option value="loey">LOEY 透明人物合拍</option><option value="loey-peace">LOEY 比耶合拍</option><option value="loey-heart">LOEY 爱心合拍</option><option value="loey-smile">LOEY 笑脸合拍</option><option value="loey-rose">LOEY 玫瑰合拍</option></select></div>
+              <div><label for="photoFrame">纪念相框</label><select id="photoFrame"><option value="blue">蓝色信笺</option><option value="polaroid">奶油拍立得</option><option value="film">复古胶片</option><option value="stars">星光纪念</option><option value="loey">LOEY 透明人物合拍</option><option value="loey-peace">LOEY 比耶合拍</option><option value="loey-heart">LOEY 爱心合拍</option><option value="loey-smile">LOEY 笑脸合拍</option><option value="loey-rose">LOEY 玫瑰合拍</option><option value="loey-school-v">LOEY 校服比耶</option><option value="loey-school-side">LOEY 校服侧身</option><option value="loey-school-smile">LOEY 校服笑眼</option><option value="loey-school-heart">LOEY 校服脸颊心</option></select></div>
             </div>
             <p class="person-frame-guide" id="personFrameGuide" hidden>LOEY 在左边，留右边给你 ♡ 对着预览调整站位，拍下一张属于你们的合照。</p>
             <div class="camera-actions"><button class="pcy-button" id="enableCamera" type="button">开启相机</button><button class="pcy-button" id="takePhoto" type="button" disabled>拍一张 ♡</button><button class="text-button" id="cancelCapture" type="button" hidden>取消定时</button><button class="text-button" id="stopCamera" type="button" disabled>关闭相机</button></div>
@@ -192,6 +214,7 @@
     <script src="./script.js?v=20261021-album"></script>
     <script src="./site-config.js"></script>
     <script src="./pcy.js?v=20261021"></script>
-    <script src="./camera.js?v=20261021-portraits"></script>
+    <script src="./mist.js?v=20261021-mist"></script>
+    <script src="./camera.js?v=20261021-school"></script>
   </body>
 </html>
