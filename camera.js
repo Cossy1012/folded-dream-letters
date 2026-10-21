@@ -13,8 +13,8 @@
   };
   const frames = {
     blue: { name: "蓝色信笺", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "A little blue moment, folded for you." },
-    polaroid: { name: "奶油拍立得", paper: "#fff9ed", ink: "#77604d", accent: "#ad8c72", box: [60, 52, 1080, 810], caption: "Dear. PCY, keep this little moment." },
-    film: { name: "复古胶片", paper: "#1c2633", ink: "#f9efd5", accent: "#d4b989", box: [84, 76, 1032, 774], caption: "PCY  /  OUR BLUE ARCHIVE" },
+    polaroid: { name: "奶油拍立得", paper: "#fff9ed", ink: "#77604d", accent: "#ad8c72", box: [60, 52, 1080, 810], caption: "Dear. LOEY, keep this little moment." },
+    film: { name: "复古胶片", paper: "#1c2633", ink: "#f9efd5", accent: "#d4b989", box: [84, 76, 1032, 774], caption: "LOEY  /  OUR BLUE ARCHIVE" },
     stars: { name: "星光纪念", paper: "#18365b", ink: "#f8edce", accent: "#a9d6f3", box: [64, 74, 1072, 804], caption: "You are my little blue star." }
   };
   let stream = null, starting = false, rendering = false, refreshing = false;
@@ -185,7 +185,7 @@
     ctx.fillText(frame.caption, 600, 940);
     ctx.font = "20px Arial, sans-serif";
     ctx.fillStyle = frame.accent;
-    ctx.fillText(`PCY  ·  FOLDED DREAM LETTERS  ·  ${date ? date.toLocaleDateString("zh-CN") : "11.27"}`, 600, 994);
+    ctx.fillText(`LOEY  ·  FOLDED DREAM LETTERS  ·  ${date ? date.toLocaleDateString("zh-CN") : "11.27"}`, 600, 994);
   }
   const demo = document.createElement("canvas");
   demo.width = 1104; demo.height = 828;
@@ -222,7 +222,7 @@
       if (photoUrl) URL.revokeObjectURL(photoUrl);
       photoUrl = URL.createObjectURL(blob);
       $("#capturedPhoto").src = photoUrl;
-      $("#capturedPhoto").alt = `带有${frame.name}相框的 PCY 纪念照`;
+      $("#capturedPhoto").alt = `带有${frame.name}相框的 LOEY 纪念照`;
       $("#capturedPhoto").hidden = false;
       $("#photoEmpty").hidden = true;
       download.href = photoUrl;
