@@ -7,7 +7,7 @@
     <meta name="description" content="Folded Dream Letters — CHANYEOL 生日纪念网页" />
     <title>Folded Dream Letters · CHANYEOL</title>
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./pcy.css?v=20261021" />
+    <link rel="stylesheet" href="./pcy.css?v=20261021-person" />
   </head>
   <body>
     <div class="paper-grain" aria-hidden="true"></div>
@@ -136,6 +136,7 @@
             <div class="camera-topline"><span>PCY PHOTO BOOTH</span><span id="cameraIndicator" class="camera-indicator">相机未开启</span></div>
             <div class="camera-view">
               <video id="cameraVideo" autoplay playsinline muted hidden aria-label="相机实时画面"></video>
+              <canvas id="cameraPersonOverlay" class="camera-person-overlay" width="1104" height="828" hidden aria-hidden="true"></canvas>
               <div class="camera-placeholder" id="cameraPlaceholder"><svg width="64" height="52" viewBox="0 0 64 52" fill="none" aria-hidden="true"><path d="M5 13h14l5-8h16l5 8h14v34H5V13Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="32" cy="29" r="11" stroke="currentColor" stroke-width="2"/><circle cx="51" cy="20" r="2" fill="currentColor"/></svg><p>让这一刻，成为一张蓝色纪念。</p><small>点击下方按钮开启相机</small></div>
               <span class="camera-corner corner-tl" aria-hidden="true"></span><span class="camera-corner corner-br" aria-hidden="true"></span>
               <div class="camera-countdown" id="cameraCountdown" hidden aria-hidden="true"><span id="cameraCountdownNumber">3</span><small>准备好，笑一笑 ♡</small></div>
@@ -144,8 +145,9 @@
             <p class="camera-device-hint" id="cameraDeviceHint">外接 USB 摄像头后，允许相机权限即可在这里选择。</p>
             <div class="camera-settings">
               <div><label for="cameraDelay">定时拍照</label><select id="cameraDelay"><option value="0">立即拍摄</option><option value="3">3 秒倒计时</option><option value="5">5 秒倒计时</option><option value="10">10 秒倒计时</option></select></div>
-              <div><label for="photoFrame">纪念相框</label><select id="photoFrame"><option value="blue">蓝色信笺</option><option value="polaroid">奶油拍立得</option><option value="film">复古胶片</option><option value="stars">星光纪念</option></select></div>
+              <div><label for="photoFrame">纪念相框</label><select id="photoFrame"><option value="blue">蓝色信笺</option><option value="polaroid">奶油拍立得</option><option value="film">复古胶片</option><option value="stars">星光纪念</option><option value="loey">LOEY 透明人物合拍</option></select></div>
             </div>
+            <p class="person-frame-guide" id="personFrameGuide" hidden>LOEY 在左边，留右边给你 ♡ 对着预览调整站位，拍下一张属于你们的合照。</p>
             <div class="camera-actions"><button class="pcy-button" id="enableCamera" type="button">开启相机</button><button class="pcy-button" id="takePhoto" type="button" disabled>拍一张 ♡</button><button class="text-button" id="cancelCapture" type="button" hidden>取消定时</button><button class="text-button" id="stopCamera" type="button" disabled>关闭相机</button></div>
             <p class="inline-status" id="cameraStatus" role="status" aria-live="polite">开启时需允许浏览器使用相机。</p>
             <p class="camera-privacy">照片只在你的设备上生成，点击下载后保存到电脑。</p>
@@ -153,7 +155,7 @@
           <div class="camera-result-panel">
             <div class="photo-result" id="photoResult"><div class="photo-empty" id="photoEmpty"><canvas id="framePreview" width="1200" height="1050" role="img" aria-label="蓝色信笺相框预览"></canvas></div><img id="capturedPhoto" alt="带有 LOEY 相框的拍照纪念卡" hidden /></div>
             <p class="photo-caption" id="frameCaption">相框预览 · 蓝色信笺</p>
-            <p class="frame-tip">拍完也能换相框，喜欢哪一款就下载哪一款。</p>
+            <p class="frame-tip" id="frameTip">拍完也能换相框，喜欢哪一款就下载哪一款。</p>
             <div class="photo-result-actions"><a class="pcy-button" id="downloadPhoto" download="PCY-blue-moment.png" hidden>下载纪念照 ↓</a><button class="text-button" id="retakePhoto" type="button" hidden>再拍一张</button></div>
           </div>
         </div>
@@ -190,6 +192,6 @@
     <script src="./script.js?v=2"></script>
     <script src="./site-config.js"></script>
     <script src="./pcy.js?v=20261021"></script>
-    <script src="./camera.js?v=20261021-loey"></script>
+    <script src="./camera.js?v=20261021-person"></script>
   </body>
 </html>

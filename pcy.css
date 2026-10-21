@@ -50,6 +50,8 @@ nav a { white-space: nowrap; }
 .camera-view { position: relative; aspect-ratio: 4/3; margin: 20px 0; overflow: hidden; border-radius: 5px; background: radial-gradient(circle at 25% 20%, #e2f4fc, #d5ebf5); }
 .camera-view video { width: 100%; height: 100%; object-fit: cover; }
 .camera-view video.is-mirrored { transform: scaleX(-1); }
+.camera-person-overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.person-frame-guide { padding: 12px 14px; margin: -8px 0 20px; border: 1px dashed #acd8ea; border-radius: 5px; color: #4b8098; background: #f0faff; font-size: 12px; line-height: 1.8; }
 .camera-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #5798b6; text-align: center; padding: 20px; }
 .camera-placeholder p { margin: 22px 0 8px; font-size: 13px; line-height: 1.7; }
 .camera-placeholder small { color: #81a5b6; font-size: 11px; }
