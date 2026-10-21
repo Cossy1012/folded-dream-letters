@@ -8,8 +8,7 @@
   const cameraStatus = $("#cameraStatus"), indicator = $("#cameraIndicator"), download = $("#downloadPhoto");
   const preview = $("#framePreview");
   const personOverlay = $("#cameraPersonOverlay"), personGuide = $("#personFrameGuide");
-  const person = new Image();
-  let personState = "loading";
+  const portraits = new Map();
   const status = (text, error = false) => {
     cameraStatus.textContent = text;
     cameraStatus.classList.toggle("is-error", error);
@@ -19,7 +18,11 @@
     polaroid: { name: "奶油拍立得", paper: "#fff9ed", ink: "#77604d", accent: "#ad8c72", box: [60, 52, 1080, 810], caption: "Dear. LOEY, keep this little moment." },
     film: { name: "复古胶片", paper: "#1c2633", ink: "#f9efd5", accent: "#d4b989", box: [84, 76, 1032, 774], caption: "LOEY  /  OUR BLUE ARCHIVE" },
     stars: { name: "星光纪念", paper: "#18365b", ink: "#f8edce", accent: "#a9d6f3", box: [64, 74, 1072, 804], caption: "You are my little blue star." },
-    loey: { name: "LOEY 透明人物合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · Stay with me, my love." }
+    loey: { name: "LOEY 透明人物合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · Stay with me, my love.", portrait: "loey-person-cutout.png" },
+    "loey-peace": { name: "LOEY 比耶合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little peace, a little love.", portrait: "loey-peace-cutout.png" },
+    "loey-heart": { name: "LOEY 爱心合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · All my little hearts for you.", portrait: "loey-heart-cutout.png" },
+    "loey-smile": { name: "LOEY 笑脸合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · Keep this little smile.", portrait: "loey-smile-cutout.png" },
+    "loey-rose": { name: "LOEY 玫瑰合拍", paper: "#fff8f8", ink: "#8b4b65", accent: "#bd8fa2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A rose, folded with love.", portrait: "loey-rose-cutout.png" }
   };
   let stream = null, starting = false, rendering = false, refreshing = false;
   let cameraVersion = 0, photoVersion = 0, listVersion = 0, countdownTimer = 0, countdownDeadline = 0;
@@ -28,8 +31,28 @@
   function ready() {
     return Boolean(stream?.getVideoTracks().some((track) => track.readyState === "live") && video.videoWidth && video.videoHeight);
   }
+  function currentPortrait(frameKey = frameSelect.value) {
+    return portraits.get(frames[frameKey]?.portrait);
+  }
+  function loadPortrait(frameKey = frameSelect.value) {
+    const file = frames[frameKey]?.portrait;
+    if (!file || portraits.has(file)) return;
+    const item = { image: new Image(), state: "loading" };
+    portraits.set(file, item);
+    item.image.addEventListener("load", () => {
+      item.state = "ready";
+      if (frames[frameSelect.value]?.portrait === file) { updateOverlay(); renderPhoto(); }
+      updateControls();
+    });
+    item.image.addEventListener("error", () => {
+      item.state = "error";
+      if (frames[frameSelect.value]?.portrait === file) updateOverlay();
+      updateControls();
+    });
+    item.image.src = `./assets/${file}?v=20261021-portraits`;
+  }
   function updateControls() {
-    take.disabled = starting || !ready() || Boolean(countdownDeadline) || rendering || (frameSelect.value === "loey" && personState !== "ready");
+    take.disabled = starting || !ready() || Boolean(countdownDeadline) || rendering || (Boolean(frames[frameSelect.value]?.portrait) && currentPortrait()?.state !== "ready");
     take.textContent = countdownDeadline ? "倒计时中…" : rendering ? "正在生成…" : "拍一张 ♡";
     enable.disabled = starting || Boolean(stream);
     enable.textContent = starting ? "等待授权…" : stream ? "相机已开启" : "开启相机";
@@ -163,13 +186,17 @@
     ctx.fill();
   }
   // Keep the cutout in the same position in live preview and the saved photo.
-  function paintPerson(ctx, width, height) {
-    if (personState !== "ready") return;
-    const h = height * .98, w = h * person.naturalWidth / person.naturalHeight;
+  function paintPerson(ctx, width, height, frameKey = frameSelect.value) {
+    const item = currentPortrait(frameKey);
+    if (item?.state !== "ready") return;
+    const person = item.image;
+    const scale = Math.min(height * .98 / person.naturalHeight, width * .56 / person.naturalWidth);
+    const w = person.naturalWidth * scale, h = person.naturalHeight * scale;
     ctx.drawImage(person, -width * .015, height - h, w, h);
   }
   function updateOverlay() {
-    const selected = frameSelect.value === "loey";
+    const selected = Boolean(frames[frameSelect.value]?.portrait);
+    const personState = currentPortrait()?.state || "loading";
     personGuide.hidden = !selected;
     personGuide.textContent = personState === "ready"
       ? "LOEY 在左边，留右边给你 ♡ 对着预览调整站位，拍下一张属于你们的合照。"
@@ -183,11 +210,11 @@
     const frame = frames[frameKey] || frames.blue;
     ctx.fillStyle = frame.paper;
     ctx.fillRect(0, 0, 1200, 1050);
-    ctx.drawImage(frameKey === "loey" && image === demo ? personDemo : image, ...frame.box);
-    if (frameKey === "loey") {
+    ctx.drawImage(frame.portrait && image === demo ? personDemo : image, ...frame.box);
+    if (frame.portrait) {
       const [x, y, w, h] = frame.box;
       ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
-      ctx.translate(x, y); paintPerson(ctx, w, h); ctx.restore();
+      ctx.translate(x, y); paintPerson(ctx, w, h, frameKey); ctx.restore();
     }
     ctx.strokeStyle = frame.accent;
     ctx.lineWidth = 1.5;
@@ -247,7 +274,7 @@
     const version = ++photoVersion;
     $("#frameCaption").textContent = `${rawPhoto ? "纪念照" : "相框预览"} · ${frame.name}`;
     preview.setAttribute("aria-label", `${frame.name}相框预览`);
-    if (!rawPhoto || (frameKey === "loey" && personState !== "ready")) {
+    if (!rawPhoto || (frame.portrait && currentPortrait(frameKey)?.state !== "ready")) {
       rendering = false;
       const ctx = preview.getContext("2d"); if (ctx) paintFrame(ctx, demo, frameKey, null);
       $("#capturedPhoto").hidden = true; $("#photoEmpty").hidden = false;
@@ -276,7 +303,7 @@
       $("#capturedPhoto").hidden = false;
       $("#photoEmpty").hidden = true;
       download.href = photoUrl;
-      download.download = `${frameKey === "loey" ? "LOEY" : "PCY"}-${frameKey}-${photoDate.toISOString().replace(/[:.]/g, "-")}.png`;
+      download.download = `${frame.portrait ? "LOEY" : "PCY"}-${frameKey}-${photoDate.toISOString().replace(/[:.]/g, "-")}.png`;
       download.setAttribute("aria-disabled", "false");
       download.hidden = $("#retakePhoto").hidden = false;
       status(success);
@@ -321,7 +348,7 @@
   stop.addEventListener("click", () => stopCamera());
   take.addEventListener("click", requestPhoto);
   cancel.addEventListener("click", () => cancelCountdown(true));
-  frameSelect.addEventListener("change", () => { updateOverlay(); renderPhoto(); });
+  frameSelect.addEventListener("change", () => { loadPortrait(); updateOverlay(); renderPhoto(); });
   refreshDevices.addEventListener("click", () => void refreshCameraDevices(true));
   deviceSelect.addEventListener("change", () => { if (stream || starting) void startCamera(deviceSelect.value); });
   navigator.mediaDevices?.addEventListener?.("devicechange", () => void refreshCameraDevices(true));
@@ -340,12 +367,7 @@
     if (!event.persisted && photoUrl) { URL.revokeObjectURL(photoUrl); photoUrl = ""; }
   });
   addEventListener("pageshow", (event) => { if (event.persisted && rawPhoto) renderPhoto(); });
-  person.addEventListener("load", () => {
-    personState = "ready"; updateOverlay(); updateControls();
-    if (frameSelect.value === "loey") renderPhoto();
-  });
-  person.addEventListener("error", () => { personState = "error"; updateOverlay(); updateControls(); });
-  person.src = "./assets/loey-person-cutout.png?v=20261021";
+  loadPortrait("loey");
   renderPhoto();
   updateControls();
   void refreshCameraDevices();

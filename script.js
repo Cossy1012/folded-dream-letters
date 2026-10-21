@@ -21,7 +21,15 @@ const photoFiles = [
   "mmexport1791553057883.jpg",
   "mmexport1791553034058.jpg",
   "mmexport1791553054427.jpg",
-  "mmexport1791553047704.jpg"
+  "mmexport1791553047704.jpg",
+  "loey-memory-20261021-01.jpg",
+  "loey-memory-20261021-02.jpg",
+  "loey-memory-20261021-03.jpg",
+  "loey-memory-20261021-04.jpg",
+  "loey-memory-20261021-05.jpg",
+  "loey-memory-20261021-06.jpg",
+  "loey-memory-20261021-07.jpg",
+  "loey-memory-20261021-08.jpg"
 ];
 
 const assetPath = (name) => `./assets/纪念册图片/${encodeURIComponent(name)}`;
