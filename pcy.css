@@ -54,6 +54,9 @@ nav a { white-space: nowrap; }
 .camera-placeholder p { margin: 22px 0 8px; font-size: 13px; line-height: 1.7; }
 .camera-placeholder small { color: #81a5b6; font-size: 11px; }
 .camera-corner { position: absolute; width: 24px; height: 24px; border-color: #ffffffb3; pointer-events: none; }
+.camera-countdown { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; color: white; background: #143c6866; pointer-events: none; text-shadow: 0 2px 18px #163d6b80; }
+.camera-countdown > span { font: 700 clamp(68px, 12vw, 116px)/1 Georgia, serif; }
+.camera-countdown small { font-size: 13px; letter-spacing: .08em; }
 .corner-tl { left: 13px; top: 13px; border-top: 2px solid #ffffffb3; border-left: 2px solid #ffffffb3; }
 .corner-br { right: 13px; bottom: 13px; border-bottom: 2px solid #ffffffb3; border-right: 2px solid #ffffffb3; }
 .camera-actions, .photo-result-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -61,15 +64,25 @@ nav a { white-space: nowrap; }
 .camera-device-row { display: flex; gap: 12px; align-items: center; margin: 0 0 18px; color: #527f94; font-size: 12px; }
 .camera-device-row label { white-space: nowrap; }
 .camera-device-row select { min-width: 0; padding: 8px; font-size: 12px; }
+.camera-device-row { margin-bottom: 0; }
+.camera-device-row .text-button { flex-shrink: 0; white-space: nowrap; }
+.camera-device-hint { margin: 9px 0 22px; color: #7896a5; font-size: 11px; line-height: 1.8; }
+.camera-settings { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 0 22px; }
+.camera-settings > div { min-width: 0; }
+.camera-settings label { display: block; color: #527f94; font-size: 12px; margin-bottom: 8px; }
+.camera-settings select { width: 100%; min-width: 0; padding: 11px 9px; border: 1px solid #d4e9f1; border-radius: 5px; background: #f8fcfd; color: #345767; font: inherit; font-size: 12px; }
+.camera-settings select:focus-visible { outline: 2px solid #69c8f1; outline-offset: 3px; }
+.camera-settings select:disabled { opacity: .6; }
+.camera-actions #cancelCapture { color: #a04455; }
 .camera-privacy { margin-bottom: 0; font-size: 11px; }
 .camera-result-panel { text-align: center; }
 .photo-result { transform: rotate(2.5deg); box-shadow: 0 22px 48px #356c8b26; background: white; }
-.photo-empty { aspect-ratio: 1200/1050; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 15px solid white; background: #edf7fb; color: #6796ac; }
-.photo-empty > span { font: 60px/1 Georgia, serif; color: #83c4e2; }
-.photo-empty p { font: italic 17px/1.5 Georgia, "STSong", serif; margin: 20px 0 12px; }
-.photo-empty small { font: 8px/1.5 Arial, sans-serif; letter-spacing: .18em; }
+.photo-empty { background: #edf7fb; }
+.photo-empty canvas { display: block; width: 100%; height: auto; }
 .photo-result img { width: 100%; }
 .photo-caption { margin: 30px 0 22px; color: #6594ab; font: italic 14px/1.5 Georgia, serif; }
+.frame-tip { margin: -10px 0 22px; color: #7896a5; font-size: 11px; line-height: 1.8; }
+.photo-result-actions a[aria-disabled="true"] { pointer-events: none; opacity: .45; }
 .photo-result-actions { justify-content: center; }
 @media (max-width: 760px) {
   .site-header { gap: 16px; }
