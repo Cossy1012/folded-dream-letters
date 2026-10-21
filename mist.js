@@ -15,7 +15,7 @@
     const pixels = grainCtx.createImageData(128, 128);
     for (let i = 0; i < pixels.data.length; i += 4) {
       pixels.data[i] = pixels.data[i + 1] = pixels.data[i + 2] = 255;
-      pixels.data[i + 3] = Math.floor(Math.random() * 18);
+      pixels.data[i + 3] = Math.floor(Math.random() * 5);
     }
     grainCtx.putImageData(pixels, 0, 0);
   }
@@ -28,32 +28,69 @@
     ctx.fillStyle = fade;
     ctx.fillRect(x - radius, y - radius, radius * 2, radius * 2);
   }
+  function waterDrop(x, y, radius, stretch, angle, refract = false) {
+    const rx = radius, ry = radius * stretch;
+    ctx.save(); ctx.translate(x, y); ctx.rotate(angle);
+    ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+    if (refract) {
+      ctx.save(); ctx.clip();
+      const sw = rx * 1.25 / width * photo.naturalWidth, sh = ry * 1.25 / height * photo.naturalHeight;
+      const sx = Math.max(0, Math.min(photo.naturalWidth - sw, x / width * photo.naturalWidth - sw / 2));
+      const sy = Math.max(0, Math.min(photo.naturalHeight - sh, y / height * photo.naturalHeight - sh / 2));
+      ctx.drawImage(photo, sx, sy, sw, sh, -rx, -ry, rx * 2, ry * 2);
+      ctx.restore();
+    }
+    const lens = ctx.createLinearGradient(-rx, -ry, rx * .5, ry);
+    lens.addColorStop(0, "rgba(255,255,255,.30)");
+    lens.addColorStop(.42, "rgba(227,245,249,.04)");
+    lens.addColorStop(1, "rgba(18,47,58,.23)");
+    ctx.fillStyle = lens; ctx.fill();
+    ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, .12, Math.PI * .88);
+    ctx.strokeStyle = "rgba(20,52,65,.28)"; ctx.lineWidth = Math.max(.35, radius * .09); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(-rx * .13, -ry * .13, rx * .8, ry * .8, 0, Math.PI * 1.05, Math.PI * 1.65);
+    ctx.strokeStyle = "rgba(255,255,255,.72)"; ctx.lineWidth = Math.max(.4, radius * .12); ctx.stroke();
+    if (radius > 2) {
+      ctx.beginPath(); ctx.ellipse(-rx * .3, -ry * .4, rx * .15, ry * .1, -.4, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255,255,255,.85)"; ctx.fill();
+    }
+    ctx.restore();
+  }
   function drawFog() {
     if (!loaded || !width || !height) return;
     ctx.globalCompositeOperation = "source-over";
     ctx.clearRect(0, 0, width, height);
     if (clearAll) return;
-    const blur = Math.min(24, width * .035);
-    ctx.save(); ctx.filter = `blur(${blur}px)`;
-    ctx.drawImage(photo, -blur, -blur, width + blur * 2, height + blur * 2);
-    ctx.restore();
+    // A translucent wet film: the photo remains readable behind the glass.
+    ctx.drawImage(photo, 0, 0, width, height);
+    ctx.save(); ctx.filter = `blur(${Math.min(3, width * .0024)}px)`;
+    ctx.drawImage(photo, 0, 0, width, height); ctx.restore();
     const haze = ctx.createLinearGradient(0, 0, width, height);
-    haze.addColorStop(0, "rgba(239,249,252,.83)");
-    haze.addColorStop(.5, "rgba(222,239,246,.78)");
-    haze.addColorStop(1, "rgba(244,251,253,.86)");
+    haze.addColorStop(0, "rgba(236,246,249,.18)");
+    haze.addColorStop(.5, "rgba(220,237,242,.12)");
+    haze.addColorStop(1, "rgba(243,250,252,.23)");
     ctx.fillStyle = haze; ctx.fillRect(0, 0, width, height);
     if (grainCtx) { ctx.fillStyle = ctx.createPattern(grain, "repeat"); ctx.fillRect(0, 0, width, height); }
-    // Repeatable condensation droplets stay in place when the window changes size.
     let seed = 1127;
     const random = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296; };
-    for (let i = 0; i < 190; i++) {
-      const x = random() * width, y = random() * height;
-      const r = (1 + random() * 2.6) * Math.min(1.2, width / 650);
-      ctx.beginPath(); ctx.ellipse(x, y, r, r * 1.45, 0, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(167,200,214,.18)"; ctx.fill();
-      ctx.strokeStyle = "rgba(255,255,255,.54)"; ctx.lineWidth = .8; ctx.stroke();
-      ctx.beginPath(); ctx.ellipse(x - r * .2, y - r * .45, r * .22, r * .35, -.3, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(255,255,255,.72)"; ctx.fill();
+    const unit = width / 900;
+    // Fine condensation, medium beads and a few larger refracting droplets.
+    for (let i = 0; i < 1700; i++) {
+      const x = random() * width, y = random() * height, r = (.22 + random() * .85) * unit;
+      ctx.fillStyle = i % 3 ? "rgba(255,255,255,.36)" : "rgba(27,63,77,.16)";
+      ctx.beginPath(); ctx.ellipse(x, y, r, r * 1.2, 0, 0, Math.PI * 2); ctx.fill();
+    }
+    for (let i = 0; i < 230; i++) waterDrop(random() * width, random() * height, (1.2 + random() * 2.7) * unit, 1 + random() * .42, (random() - .5) * .35);
+    for (let i = 0; i < 30; i++) waterDrop(random() * width, random() * height, (4.3 + random() * 4.8) * unit, 1 + random() * .45, (random() - .5) * .2, true);
+    // Narrow irregular rivulets left by droplets sliding down the glass.
+    for (let i = 0; i < 9; i++) {
+      const x = random() * width, y = random() * height * .8, length = (24 + random() * 95) * unit;
+      const drift = (random() - .5) * 14 * unit;
+      ctx.beginPath(); ctx.moveTo(x, y);
+      ctx.bezierCurveTo(x - drift, y + length * .3, x + drift, y + length * .7, x + drift * .4, y + length);
+      const trail = ctx.createLinearGradient(x, y, x, y + length);
+      trail.addColorStop(0, "rgba(255,255,255,0)"); trail.addColorStop(.7, "rgba(255,255,255,.38)"); trail.addColorStop(1, "rgba(56,89,101,.18)");
+      ctx.strokeStyle = trail; ctx.lineWidth = (1 + random() * 1.5) * unit; ctx.lineCap = "round"; ctx.stroke();
+      waterDrop(x + drift * .4, y + length, (2.8 + random() * 2) * unit, 1.5, 0, true);
     }
     for (const mark of marks) brush(mark.x * width, mark.y * height, mark.r * width);
   }

@@ -14,19 +14,19 @@
     cameraStatus.classList.toggle("is-error", error);
   };
   const frames = {
-    blue: { name: "蓝色信笺", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "A little blue moment, folded for you." },
-    polaroid: { name: "奶油拍立得", paper: "#fff9ed", ink: "#77604d", accent: "#ad8c72", box: [60, 52, 1080, 810], caption: "Dear. LOEY, keep this little moment." },
-    film: { name: "复古胶片", paper: "#1c2633", ink: "#f9efd5", accent: "#d4b989", box: [84, 76, 1032, 774], caption: "LOEY  /  OUR BLUE ARCHIVE" },
-    stars: { name: "星光纪念", paper: "#18365b", ink: "#f8edce", accent: "#a9d6f3", box: [64, 74, 1072, 804], caption: "You are my little blue star." },
-    loey: { name: "LOEY 透明人物合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · Stay with me, my love.", portrait: "loey-person-cutout.png" },
-    "loey-peace": { name: "LOEY 比耶合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little peace, a little love.", portrait: "loey-peace-cutout.png" },
-    "loey-heart": { name: "LOEY 爱心合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · All my little hearts for you.", portrait: "loey-heart-cutout.png" },
-    "loey-smile": { name: "LOEY 笑脸合拍", paper: "#f6fcff", ink: "#246a8b", accent: "#6a9db5", box: [48, 48, 1104, 828], caption: "LOEY + YOU · Keep this little smile.", portrait: "loey-smile-cutout.png" },
-    "loey-rose": { name: "LOEY 玫瑰合拍", paper: "#fff8f8", ink: "#8b4b65", accent: "#bd8fa2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A rose, folded with love.", portrait: "loey-rose-cutout.png" },
-    "loey-school-v": { name: "LOEY 校服比耶", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-v-cutout.png" },
-    "loey-school-side": { name: "LOEY 校服侧身", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-side-cutout.png" },
-    "loey-school-smile": { name: "LOEY 校服笑眼", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-smile-cutout.png" },
-    "loey-school-heart": { name: "LOEY 校服脸颊心", paper: "#b9001b", ink: "#fff4f4", accent: "#efb9c2", box: [48, 48, 1104, 828], caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-heart-cutout.png" }
+    blue: { name: "蓝色信笺", paper: "#f6fcff", accent: "#6a9db5", caption: "A little blue moment, folded for you." },
+    polaroid: { name: "奶油拍立得", paper: "#fff9ed", accent: "#ad8c72", caption: "Dear. LOEY, keep this little moment." },
+    film: { name: "复古胶片", paper: "#1c2633", accent: "#d4b989", caption: "LOEY  /  OUR BLUE ARCHIVE" },
+    stars: { name: "星光纪念", paper: "#18365b", accent: "#a9d6f3", caption: "You are my little blue star." },
+    loey: { name: "LOEY 透明人物合拍", paper: "#f6fcff", accent: "#6a9db5", caption: "LOEY + YOU · Stay with me, my love.", portrait: "loey-person-cutout.png" },
+    "loey-peace": { name: "LOEY 比耶合拍", paper: "#f6fcff", accent: "#6a9db5", caption: "LOEY + YOU · A little peace, a little love.", portrait: "loey-peace-cutout.png" },
+    "loey-heart": { name: "LOEY 爱心合拍", paper: "#f6fcff", accent: "#6a9db5", caption: "LOEY + YOU · All my little hearts for you.", portrait: "loey-heart-cutout.png" },
+    "loey-smile": { name: "LOEY 笑脸合拍", paper: "#f6fcff", accent: "#6a9db5", caption: "LOEY + YOU · Keep this little smile.", portrait: "loey-smile-cutout.png" },
+    "loey-rose": { name: "LOEY 玫瑰合拍", paper: "#fff8f8", accent: "#bd8fa2", caption: "LOEY + YOU · A rose, folded with love.", portrait: "loey-rose-cutout.png" },
+    "loey-school-v": { name: "LOEY 校服比耶", paper: "#b9001b", accent: "#efb9c2", caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-v-cutout.png" },
+    "loey-school-side": { name: "LOEY 校服侧身", paper: "#b9001b", accent: "#efb9c2", caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-side-cutout.png" },
+    "loey-school-smile": { name: "LOEY 校服笑眼", paper: "#b9001b", accent: "#efb9c2", caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-smile-cutout.png" },
+    "loey-school-heart": { name: "LOEY 校服脸颊心", paper: "#b9001b", accent: "#efb9c2", caption: "LOEY + YOU · A little school-day love.", portrait: "loey-school-heart-cutout.png" }
   };
   let stream = null, starting = false, rendering = false, refreshing = false;
   let cameraVersion = 0, photoVersion = 0, listVersion = 0, countdownTimer = 0, countdownDeadline = 0;
@@ -34,6 +34,16 @@
 
   function ready() {
     return Boolean(stream?.getVideoTracks().some((track) => track.readyState === "live") && video.videoWidth && video.videoHeight);
+  }
+  function cameraSize() {
+    const scale = Math.min(1, 1920 / Math.max(video.videoWidth || 1104, video.videoHeight || 828));
+    return { width: Math.round((video.videoWidth || 1104) * scale), height: Math.round((video.videoHeight || 828) * scale) };
+  }
+  function syncLiveGeometry() {
+    if (!video.videoWidth || !video.videoHeight) return;
+    const size = cameraSize();
+    video.parentElement.style.aspectRatio = `${size.width} / ${size.height}`;
+    personOverlay.width = size.width; personOverlay.height = size.height;
   }
   function currentPortrait(frameKey = frameSelect.value) {
     return portraits.get(frames[frameKey]?.portrait);
@@ -80,6 +90,7 @@
     previous?.getTracks().forEach((track) => track.stop());
     video.srcObject = null;
     video.hidden = true;
+    video.parentElement.style.removeProperty("aspect-ratio");
     personOverlay.hidden = true;
     $("#cameraPlaceholder").hidden = false;
     indicator.textContent = "相机未开启";
@@ -166,6 +177,7 @@
       starting = false;
       indicator.textContent = "相机已开启";
       indicator.classList.add("is-live");
+      syncLiveGeometry();
       updateControls();
       updateOverlay();
       status("准备好了，选择定时和相框，再点击“拍一张” ♡");
@@ -194,7 +206,7 @@
     const item = currentPortrait(frameKey);
     if (item?.state !== "ready") return;
     const person = item.image;
-    const scale = Math.min(height * .98 / person.naturalHeight, width * .56 / person.naturalWidth);
+    const scale = Math.min(height / person.naturalHeight, width * .72 / person.naturalWidth);
     const w = person.naturalWidth * scale, h = person.naturalHeight * scale;
     ctx.drawImage(person, -width * .015, height - h, w, h);
   }
@@ -208,69 +220,55 @@
     $("#frameTip").textContent = selected ? "透明人物会一起保存在下载的照片里，也可以拍完再换其他相框。" : "拍完也能换相框，喜欢哪一款就下载哪一款。";
     personOverlay.hidden = !selected || !ready() || personState !== "ready";
     const ctx = personOverlay.getContext("2d");
-    if (ctx) { ctx.clearRect(0, 0, 1104, 828); if (!personOverlay.hidden) paintPerson(ctx, 1104, 828); }
+    if (ctx) { ctx.clearRect(0, 0, personOverlay.width, personOverlay.height); if (!personOverlay.hidden) paintPerson(ctx, personOverlay.width, personOverlay.height); }
   }
   function paintFrame(ctx, image, frameKey, date) {
     const frame = frames[frameKey] || frames.blue;
-    ctx.fillStyle = frame.paper;
-    ctx.fillRect(0, 0, 1200, 1050);
-    ctx.drawImage(frame.portrait && image === demo ? personDemo : image, ...frame.box);
-    if (frame.portrait) {
-      const [x, y, w, h] = frame.box;
-      ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
-      ctx.translate(x, y); paintPerson(ctx, w, h, frameKey); ctx.restore();
-    }
-    ctx.strokeStyle = frame.accent;
-    ctx.lineWidth = 1.5;
-    ctx.strokeRect(...frame.box);
+    const width = ctx.canvas.width, height = ctx.canvas.height;
+    const unit = Math.min(width, height) / 828, inset = 12 * unit;
+    ctx.clearRect(0, 0, width, height);
+    if (image === demo) paintDemo(ctx, width, height, Boolean(frame.portrait));
+    else ctx.drawImage(image, 0, 0, width, height);
+    if (frame.portrait) paintPerson(ctx, width, height, frameKey);
+    // The frame sits inside the photo: no extra canvas, paper margins or footer.
+    ctx.strokeStyle = frameKey === "polaroid" ? frame.paper : frame.portrait ? frame.paper : frame.accent;
+    ctx.lineWidth = (frameKey === "polaroid" ? 12 : frame.portrait ? 7 : 2) * unit;
+    ctx.strokeRect(inset, inset, width - inset * 2, height - inset * 2);
     if (frameKey === "film") {
+      ctx.fillStyle = "#1c2633b3";
+      ctx.fillRect(0, 0, 28 * unit, height); ctx.fillRect(width - 28 * unit, 0, 28 * unit, height);
       ctx.fillStyle = "#e9ddbc";
-      for (let y = 54; y < 930; y += 86) { ctx.fillRect(20, y, 32, 40); ctx.fillRect(1148, y, 32, 40); }
-      ctx.font = "18px monospace";
-      ctx.textAlign = "left";
-      ctx.fillText("27  /  NOV", 88, 44);
+      for (let y = 22 * unit; y < height; y += 64 * unit) {
+        ctx.fillRect(8 * unit, y, 12 * unit, 25 * unit); ctx.fillRect(width - 20 * unit, y, 12 * unit, 25 * unit);
+      }
     } else if (frameKey === "stars") {
       ctx.fillStyle = "#efdb9a";
-      [[30, 50, 13], [300, 31, 9], [820, 36, 12], [1166, 260, 13], [27, 600, 10], [1171, 836, 10], [170, 992, 12], [1040, 997, 14]].forEach(([x, y, r]) => star(ctx, x, y, r));
-    } else if (frameKey === "polaroid") {
-      ctx.fillStyle = "#e1cbb49c";
-      for (const x of [60, 1140]) {
-        ctx.save(); ctx.translate(x, 54); ctx.rotate(x === 60 ? -.55 : .55); ctx.fillRect(-45, -12, 90, 24); ctx.restore();
-      }
+      [[.06, .07, 12], [.3, .035, 7], [.84, .06, 10], [.96, .35, 9], [.04, .73, 8], [.95, .83, 12]].forEach(([x, y, r]) => star(ctx, width * x, height * y, r * unit));
     }
+    const shade = ctx.createLinearGradient(0, height - 100 * unit, 0, height);
+    shade.addColorStop(0, "rgba(9,30,42,0)"); shade.addColorStop(1, "rgba(9,30,42,.48)");
+    ctx.fillStyle = shade; ctx.fillRect(0, height - 100 * unit, width, 100 * unit);
     ctx.textAlign = "center";
-    ctx.fillStyle = frame.ink;
-    ctx.font = frameKey === "film" ? "30px monospace" : "italic 36px Georgia, serif";
-    ctx.fillText(frame.caption, 600, 940);
-    ctx.font = "20px Arial, sans-serif";
-    ctx.fillStyle = frame.accent;
-    ctx.fillText(`LOEY  ·  FOLDED DREAM LETTERS  ·  ${date ? date.toLocaleDateString("zh-CN") : "11.27"}`, 600, 994);
+    ctx.fillStyle = "#fff";
+    ctx.font = `italic ${23 * unit}px Georgia, serif`;
+    ctx.fillText(frame.caption, width / 2, height - 43 * unit, width - 64 * unit);
+    ctx.font = `${13 * unit}px Arial, sans-serif`;
+    ctx.fillText(`LOEY  ·  FOLDED DREAM LETTERS  ·  ${date ? date.toLocaleDateString("zh-CN") : "11.27"}`, width / 2, height - 21 * unit, width - 64 * unit);
   }
   const demo = document.createElement("canvas");
   demo.width = 1104; demo.height = 828;
-  const demoContext = demo.getContext("2d");
-  if (demoContext) {
-    const gradient = demoContext.createLinearGradient(0, 0, 1104, 828);
-    gradient.addColorStop(0, "#e1f2fc"); gradient.addColorStop(1, "#edf8fd");
-    demoContext.fillStyle = gradient; demoContext.fillRect(0, 0, 1104, 828);
-    demoContext.fillStyle = "#83c4e2"; demoContext.textAlign = "center"; demoContext.font = "150px Georgia, serif";
-    demoContext.fillText("♡", 552, 410);
-    demoContext.fillStyle = "#6796ac"; demoContext.font = "30px Arial, sans-serif";
-    demoContext.fillText("YOUR LITTLE BLUE MOMENT", 552, 520);
-  }
-  const personDemo = document.createElement("canvas");
-  personDemo.width = 1104; personDemo.height = 828;
-  const personDemoContext = personDemo.getContext("2d");
-  if (personDemoContext) {
-    const gradient = personDemoContext.createLinearGradient(0, 0, 1104, 828);
+  function paintDemo(ctx, width, height, portrait) {
+    const unit = Math.min(width, height) / 828;
+    const gradient = ctx.createLinearGradient(0, 0, width, height);
     gradient.addColorStop(0, "#ddf1fb"); gradient.addColorStop(1, "#eff9fd");
-    personDemoContext.fillStyle = gradient; personDemoContext.fillRect(0, 0, 1104, 828);
-    personDemoContext.textAlign = "center"; personDemoContext.fillStyle = "#80bed8";
-    personDemoContext.font = "100px Georgia, serif"; personDemoContext.fillText("♡", 820, 360);
-    personDemoContext.fillStyle = "#6198b0"; personDemoContext.font = "34px Georgia, serif";
-    personDemoContext.fillText("YOU", 820, 445);
-    personDemoContext.font = "18px Arial, sans-serif";
-    personDemoContext.fillText("A LITTLE MOMENT WITH LOEY", 820, 488);
+    ctx.fillStyle = gradient; ctx.fillRect(0, 0, width, height);
+    const x = width * (portrait ? .81 : .5);
+    ctx.textAlign = "center"; ctx.fillStyle = "#80bed8";
+    ctx.font = `${100 * unit}px Georgia, serif`; ctx.fillText("♡", x, height * .43);
+    ctx.fillStyle = "#6198b0"; ctx.font = `${32 * unit}px Georgia, serif`;
+    ctx.fillText(portrait ? "YOU" : "YOUR BLUE MOMENT", x, height * .53, width * (portrait ? .33 : .85));
+    ctx.font = `${16 * unit}px Arial, sans-serif`;
+    ctx.fillText("A LITTLE MOMENT WITH LOEY", x, height * .59, width * (portrait ? .33 : .85));
   }
   function renderPhoto(success = "相框已更新，可以下载这张纪念照啦 ♡") {
     const frameKey = Object.hasOwn(frames, frameSelect.value) ? frameSelect.value : "blue";
@@ -280,6 +278,8 @@
     preview.setAttribute("aria-label", `${frame.name}相框预览`);
     if (!rawPhoto || (frame.portrait && currentPortrait(frameKey)?.state !== "ready")) {
       rendering = false;
+      const size = rawPhoto || (ready() ? cameraSize() : demo);
+      preview.width = size.width; preview.height = size.height;
       const ctx = preview.getContext("2d"); if (ctx) paintFrame(ctx, demo, frameKey, null);
       $("#capturedPhoto").hidden = true; $("#photoEmpty").hidden = false;
       download.hidden = $("#retakePhoto").hidden = true;
@@ -287,7 +287,7 @@
       updateControls();
       return;
     }
-    const canvas = document.createElement("canvas"); canvas.width = 1200; canvas.height = 1050;
+    const canvas = document.createElement("canvas"); canvas.width = rawPhoto.width; canvas.height = rawPhoto.height;
     const ctx = canvas.getContext("2d");
     if (!ctx) { status("浏览器暂时无法生成照片，请换个浏览器重试。", true); return; }
     rendering = true;
@@ -316,13 +316,12 @@
   function capturePhoto() {
     if (!ready() || starting || rendering) return;
     try {
-      const image = document.createElement("canvas"); image.width = 1104; image.height = 828;
+      const size = cameraSize();
+      const image = document.createElement("canvas"); image.width = size.width; image.height = size.height;
       const ctx = image.getContext("2d");
       if (!ctx) throw new Error("Canvas unavailable");
-      let sw = video.videoWidth, sh = video.videoHeight;
-      if (sw / sh > 4 / 3) sw = sh * 4 / 3; else sh = sw * 3 / 4;
-      if (video.classList.contains("is-mirrored")) { ctx.translate(1104, 0); ctx.scale(-1, 1); }
-      ctx.drawImage(video, (video.videoWidth - sw) / 2, (video.videoHeight - sh) / 2, sw, sh, 0, 0, 1104, 828);
+      if (video.classList.contains("is-mirrored")) { ctx.translate(size.width, 0); ctx.scale(-1, 1); }
+      ctx.drawImage(video, 0, 0, size.width, size.height);
       rawPhoto = image;
       photoDate = new Date();
       renderPhoto("纪念照已经准备好，可以换相框或直接下载 ♡");
@@ -347,7 +346,12 @@
     };
     tick();
   }
-  video.addEventListener("loadeddata", () => { updateControls(); updateOverlay(); });
+  const refreshLiveView = () => {
+    syncLiveGeometry(); updateControls(); updateOverlay();
+    if (!rawPhoto) renderPhoto();
+  };
+  video.addEventListener("loadeddata", refreshLiveView);
+  video.addEventListener("resize", refreshLiveView);
   enable.addEventListener("click", () => void startCamera(deviceSelect.value));
   stop.addEventListener("click", () => stopCamera());
   take.addEventListener("click", requestPhoto);
