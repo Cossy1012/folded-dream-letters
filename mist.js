@@ -77,7 +77,7 @@
     if (clearAll) return;
     // A translucent wet film: the photo remains readable behind the glass.
     ctx.drawImage(photo, 0, 0, width, height);
-    ctx.save(); ctx.filter = `blur(${Math.min(3, width * .0024)}px)`;
+    ctx.save(); ctx.filter = `blur(${Math.min(7, width * .006)}px)`;
     ctx.drawImage(photo, 0, 0, width, height); ctx.restore();
     const haze = ctx.createLinearGradient(0, 0, width, height);
     haze.addColorStop(0, "rgba(236,246,249,.18)");
